@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"); 
+      background-size: cover; 
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      position: relative;
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      width: 50%;
+      max-width: 500px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    .form-group input:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+    .form-group input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      text-decoration: none;
+      background-color: #007BFF;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+    .back-button::before {
+      content: '←'; 
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .form-group small {
+      display: block;
+      color: #888;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <a class="back-button" href="{% url 'product.index' %}"></a>
+    <h2>Update Product</h2>
+    <form action="{% url 'product.update' id %}" method="post">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="nama_product">Nama Product</label>
+        <input id="nama_product" name="nama_product" type="text" value="{{ nama_product }}" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="kategori">Kategori Product</label>
+        <input id="kategori" name="kategori" type="text" value="{{ kategori }}" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="publish">Publish</label>
+        {{ buku.publish.date }}
+        <input id="publish" name="publish" type="date" value="{{ publish }}" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="harga">Harga</label>
+        <input id="harga" name="harga" type="text" value="{{ harga }}" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="jumlah_product">Jumlah Product</label>
+        <input id="jumlah_product" name="jumlah_product" type="text" value="{{ jumlah_product }}" required>
+      </div>
+      
+      <div class="form-group">
+        <input type="submit" value="Simpan">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
